@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine? 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff4d6d, #ff9a9e, #fbc2eb, #fad0c4);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      max-width: 400px;
+      animation: pop 1s ease;
+      z-index: 2;
+    }
+
+    h1 { color: #e63946; }
+    p { font-size: 18px; }
+
+    button {
+      background: #e63946;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      margin: 10px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover { background: #c1121f; transform: scale(1.1); }
+
+    #message { margin-top: 15px; font-size: 18px; font-weight: bold; }
+
+    .hearts { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; }
+    .heart { position:absolute; bottom:-10px; font-size:24px; animation: floatUp 6s linear infinite; }
+
+    @keyframes floatUp {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .big-heart {
+      font-size: 80px;
+      animation: pulse 1s infinite;
+      display: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Happy Valentine's Day 💝</h1>
+  <p>You make my world brighter, my heart warmer, and my days happier.</p>
+  <p>So I have just one special question for you...</p>
+  <h2>Will You Be My Valentine? 🌹</h2>
+
+  <button onclick="sayYes()">YES 💖</button>
+  <button onclick="sayNo()">NO 🙈</button>
+
+  <div id="message"></div>
+  <div class="big-heart" id="bigHeart">❤️</div>
+</div>
+
+<div class="hearts"></div>
+
+<audio autoplay loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const heartsContainer = document.querySelector('.hearts');
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 400);
+
+  function sayYes() {
+    document.getElementById('message').innerHTML = "Yaaay! 💕 You just made this the most beautiful Valentine's ever!";
+    document.getElementById('bigHeart').style.display = 'block';
+  }
+
+  function sayNo() {
+    document.getElementById('message').innerHTML = "I'll keep loving you anyway 😅💘";
+  }
+</script>
+
+</body>
+</html>
