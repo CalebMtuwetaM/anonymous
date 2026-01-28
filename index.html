@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Will You Be My Valentine 💖</title>
+  <title>Will You Be My Valentine? 💖</title>
   <style>
     body {
       margin: 0;
@@ -88,9 +88,10 @@
 
 <div class="hearts"></div>
 
-<audio autoplay loop>
+<audio id="bgMusic" loop>
   <source src="romantic.mp3" type="audio/mpeg">
 </audio>
+<button id="playBtn" style="position:fixed; bottom:20px; right:20px; padding:10px 16px; border-radius:20px; border:none; background:#e63946; color:white; cursor:pointer;">▶ Play Music</button>
 
 <script>
   const heartsContainer = document.querySelector('.hearts');
@@ -103,6 +104,18 @@
     heartsContainer.appendChild(heart);
     setTimeout(() => heart.remove(), 6000);
   }, 400);
+
+  const music = document.getElementById('bgMusic');
+  const playBtn = document.getElementById('playBtn');
+
+  // Start music on first user interaction (required by browsers)
+  function startMusic() {
+    music.play().catch(() => {});
+    playBtn.style.display = 'none';
+    document.removeEventListener('click', startMusic);
+  }
+  document.addEventListener('click', startMusic);
+  playBtn.addEventListener('click', startMusic);
 
   function sayYes() {
     document.getElementById('message').innerHTML = "Yaaay! 💕 You just made this the most beautiful Valentine's ever!";
